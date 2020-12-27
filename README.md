@@ -14,4 +14,4 @@ You can use normal Godot 3.2. You will also need to:
 **Note:** Building without Steam integration will disable online multiplayer.
 
 ## Tips
-- Any builds with the same version number will see the same lobbies, so use a custom version number to prevent conflicts.
+- Any builds with the same version number ("VERSION" in scripts/global.gd) will see the same lobbies, so use a custom version number to prevent conflicts.
