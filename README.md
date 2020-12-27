@@ -2,6 +2,7 @@
 2D one-hit fighting game, made with Godot 3.2 and GodotSteam.
 
 ## Building
+**Please read README.txt in resources/font/raw for more information about downloading the default fonts, as they are not included!**
 ### With Steam integration 
 Use GodotSteam for Godot 3.2 (https://github.com/Gramps/GodotSteam) and follow the instructions.
 
