@@ -12,3 +12,6 @@ You can use normal Godot 3.2. You will also need to:
 - Enable Steam as a Singleton in Project -> Project Settings -> AutoLoad
 
 **Note:** Building without Steam integration will disable online multiplayer.
+
+## Tips
+- Any builds with the same version number will see the same lobbies, so use a custom version number to prevent conflicts.
