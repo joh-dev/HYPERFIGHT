@@ -24,7 +24,7 @@ enum P_TYPE { menu_lobby_owner, menu_lobby_joiner, \
 			  ss_highlight, ss_select, ss_confirmed, \
 			  game_input, game_menu, game_ping }
 
-const VERSION = "v3.1.1"
+const VERSION = "v3.1.1 custom"
 
 const CONFIG_FILE = "user://config.cfg"
 const PALETTE_FILE = "user://palette.cfg"
