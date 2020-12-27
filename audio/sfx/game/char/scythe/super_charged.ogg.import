@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/super_charged.ogg-819f88fe90b385e6bc508cd0088ef730.oggstr"
+
+[deps]
+
+source_file="res://audio/sfx/game/char/scythe/super_charged.ogg"
+dest_files=[ "res://.import/super_charged.ogg-819f88fe90b385e6bc508cd0088ef730.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

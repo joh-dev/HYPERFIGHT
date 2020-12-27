@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://graphics/ui/lobby/banner/player.png" type="Texture" id=1]
+[ext_resource path="res://scripts/ui/lobby/banner/player.gd" type="Script" id=2]
+[ext_resource path="res://resources/font/pixel_intv.tres" type="DynamicFont" id=3]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[node name="lobby_player_banner" type="Sprite"]
+texture = ExtResource( 1 )
+centered = false
+script = ExtResource( 2 )
+
+[node name="label_name" type="Label" parent="."]
+margin_left = 4.0
+margin_top = 2.0
+margin_right = 128.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 3 )
+clip_text = true
+
+[node name="label_skip_node" type="Node2D" parent="."]
+z_index = 1
+
+[node name="label_skip" type="Label" parent="label_skip_node"]
+margin_left = 4.0
+margin_top = -2.0
+margin_right = 127.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.945098, 0.666667, 0.372549, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "SKIP"
+align = 2
+clip_text = true
+
+[node name="label_wins_node" type="Node2D" parent="."]
+z_index = 2
+
+[node name="label_wins" type="Label" parent="label_wins_node"]
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 127.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.372549, 0.945098, 0.407843, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+align = 2
+clip_text = true
+
+[node name="avatar" type="Sprite" parent="."]
+position = Vector2( -16, 0 )
+scale = Vector2( 0.5, 0.5 )
+centered = false

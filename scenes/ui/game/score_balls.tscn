@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/ui/game/score_ball.gd" type="Script" id=1]
+[ext_resource path="res://graphics/ui/game/score_ball.png" type="Texture" id=2]
+
+
+
+[node name="score_balls" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Animation" ]
+reversed = false
+
+[node name="ball_1" type="Sprite" parent="." index="0"]
+
+position = Vector2( -36, 0 )
+texture = ExtResource( 2 )
+hframes = 3
+_sections_unfolded = [ "Animation", "Transform" ]
+
+[node name="ball_2" type="Sprite" parent="." index="1"]
+
+position = Vector2( -18, 0 )
+texture = ExtResource( 2 )
+hframes = 3
+_sections_unfolded = [ "Animation", "Transform" ]
+
+[node name="ball_3" type="Sprite" parent="." index="2"]
+
+texture = ExtResource( 2 )
+hframes = 3
+_sections_unfolded = [ "Animation" ]
+
+[node name="ball_4" type="Sprite" parent="." index="3"]
+
+position = Vector2( 18, 0 )
+texture = ExtResource( 2 )
+hframes = 3
+_sections_unfolded = [ "Animation", "Transform" ]
+
+[node name="ball_5" type="Sprite" parent="." index="4"]
+
+position = Vector2( 36, 0 )
+texture = ExtResource( 2 )
+hframes = 3
+_sections_unfolded = [ "Animation", "Transform" ]
+
+

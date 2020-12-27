@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/super.ogg-06f91e2da1fb9572c4c020b4e6cd070e.oggstr"
+
+[deps]
+
+source_file="res://audio/sfx/game/char/scythe/super.ogg"
+dest_files=[ "res://.import/super.ogg-06f91e2da1fb9572c4c020b4e6cd070e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

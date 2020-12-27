@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/super_swallow.ogg-9e1e6227ad76b76a1421ace9b94dd0dc.oggstr"
+
+[deps]
+
+source_file="res://audio/sfx/game/char/kero/super_swallow.ogg"
+dest_files=[ "res://.import/super_swallow.ogg-9e1e6227ad76b76a1421ace9b94dd0dc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lab.ogg-e5177bb524be0ee79d11001df730d0fc.oggstr"
+
+[deps]
+
+source_file="res://audio/music/game/lab.ogg"
+dest_files=[ "res://.import/lab.ogg-e5177bb524be0ee79d11001df730d0fc.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=9.23

@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://graphics/ui/menu/banner/h.png" type="Texture" id=1]
+[ext_resource path="res://scripts/ui/menu/news.gd" type="Script" id=2]
+[ext_resource path="res://resources/font/savior1.tres" type="DynamicFont" id=3]
+[ext_resource path="res://graphics/ui/menu/arrow.png" type="Texture" id=4]
+[ext_resource path="res://scenes/ui/menu/button_click.tscn" type="PackedScene" id=5]
+[ext_resource path="res://graphics/ui/menu/icon/steam.png" type="Texture" id=6]
+[ext_resource path="res://graphics/ui/menu/icon/discord.png" type="Texture" id=7]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[node name="news" type="Sprite"]
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="label_news" type="Label" parent="."]
+margin_left = -122.0
+margin_top = -53.0
+margin_right = 122.0
+margin_bottom = 53.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.25098 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+text = "v2.0 \"Unlimited\" is now available!
+
+Changelog:
+
+- Renamed to simply HYPERFIGHT 
+  (v1.x titled \"Max Battle\")
+- Added online multiplayer
+- New character: Vince Volt
+- New stage: Sunset Bridge
+- UI rehaul"
+
+[node name="label_page" type="Label" parent="."]
+margin_left = 88.0
+margin_top = 38.0
+margin_right = 120.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+text = "1"
+align = 1
+
+[node name="label_community" type="Label" parent="."]
+margin_left = -124.0
+margin_top = 75.0
+margin_right = 14.0
+margin_bottom = 88.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.603922, 0.901961, 0.909804, 1 )
+custom_colors/font_color_shadow = Color( 0.262745, 0.0784314, 0.247059, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+text = "Click to join the community!"
+align = 1
+
+[node name="arrow_left" type="Sprite" parent="."]
+position = Vector2( 86, 47 )
+texture = ExtResource( 4 )
+
+[node name="arrow_right" type="Sprite" parent="."]
+position = Vector2( 122, 47 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 4 )
+
+[node name="button_steam" parent="." instance=ExtResource( 5 )]
+position = Vector2( -107, 69 )
+texture = ExtResource( 6 )
+click_rect = Rect2( -10, -25, 55, 15 )
+label_text = "Steam"
+link = "https://steamcommunity.com/app/1005870"
+
+[node name="button_discord" parent="." instance=ExtResource( 5 )]
+position = Vector2( -47, 69 )
+texture = ExtResource( 7 )
+click_rect = Rect2( -10, -25, 65, 15 )
+label_text = "Discord"
+link = "https://discord.gg/7bkz8j8"

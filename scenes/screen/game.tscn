@@ -1,0 +1,423 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scripts/screen/game.gd" type="Script" id=1]
+[ext_resource path="res://resources/font/pixel_intv.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scenes/ui/game/score_balls.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ui/game/scythe/meter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/font/savior1.tres" type="DynamicFont" id=5]
+[ext_resource path="res://graphics/ui/transition.png" type="Texture" id=6]
+[ext_resource path="res://scenes/ui/menu/button.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/ui/menu/button/game/training/p1_points.gd" type="Script" id=8]
+[ext_resource path="res://scripts/ui/menu/button/game/training/p2_points.gd" type="Script" id=9]
+[ext_resource path="res://scripts/ui/menu/button/game/training/p2_control.gd" type="Script" id=10]
+[ext_resource path="res://scripts/ui/menu/button/game/training/showhitboxes.gd" type="Script" id=11]
+[ext_resource path="res://scripts/ui/menu/button/game/training/resetpos.gd" type="Script" id=12]
+[ext_resource path="res://scenes/ui/menu/textbox.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/ui/menu/banner.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/ui/game/move_list.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/ui/game/bg.tscn" type="PackedScene" id=16]
+
+[node name="game" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+offset = Vector2( 128, 75 )
+transform = Transform2D( 1, 0, 0, 1, 128, 75 )
+
+[node name="label_player1" type="Label" parent="GUILayer"]
+margin_left = -121.0
+margin_top = -61.0
+margin_right = -14.0
+margin_bottom = -37.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Player 1"
+
+[node name="label_wins" type="Label" parent="GUILayer/label_player1"]
+visible = false
+margin_top = 9.0
+margin_right = 107.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "1 wins"
+
+[node name="score_balls" parent="GUILayer/label_player1" instance=ExtResource( 3 )]
+position = Vector2( 46, -4 )
+
+[node name="meter_scythe" parent="GUILayer/label_player1" instance=ExtResource( 4 )]
+position = Vector2( 35, 129 )
+
+[node name="label_player2" type="Label" parent="GUILayer"]
+margin_left = 15.0
+margin_top = -61.0
+margin_right = 122.0
+margin_bottom = -37.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.501961, 1, 1 )
+text = "Player 2"
+align = 2
+
+[node name="label_wins" type="Label" parent="GUILayer/label_player2"]
+visible = false
+margin_top = 9.0
+margin_right = 107.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.501961, 1, 1 )
+text = "1 wins"
+align = 2
+
+[node name="score_balls" parent="GUILayer/label_player2" instance=ExtResource( 3 )]
+position = Vector2( 60, -4 )
+reversed = true
+
+[node name="meter_scythe" parent="GUILayer/label_player2" instance=ExtResource( 4 )]
+position = Vector2( 69, 129 )
+scale = Vector2( -1, 1 )
+
+[node name="label_center_node" type="Node2D" parent="GUILayer"]
+z_index = 1500
+
+[node name="label_center" type="Label" parent="GUILayer/label_center_node"]
+margin_left = -54.0
+margin_top = -10.0
+margin_right = 54.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_shadow = Color( 0.72549, 0.313726, 0.588235, 1 )
+text = "Player 1 wins!"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label_delay" type="Label" parent="GUILayer"]
+margin_left = -53.0
+margin_top = -73.0
+margin_right = 55.0
+margin_bottom = -49.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_shadow = Color( 0.72549, 0.313726, 0.584314, 1 )
+text = "Delay: 0f"
+align = 1
+
+[node name="label_paused_node" type="Node2D" parent="GUILayer"]
+z_index = 4000
+
+[node name="label_paused" type="Label" parent="GUILayer/label_paused_node"]
+visible = false
+margin_left = -122.0
+margin_top = -69.0
+margin_right = -14.0
+margin_bottom = -45.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Paused"
+align = 1
+
+[node name="label_timer_node" type="Node2D" parent="GUILayer"]
+z_index = 4000
+
+[node name="label_time" type="Label" parent="GUILayer/label_timer_node"]
+visible = false
+margin_left = -122.0
+margin_top = -69.0
+margin_right = -14.0
+margin_bottom = -45.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "30"
+align = 1
+
+[node name="transition" type="Sprite" parent="GUILayer"]
+visible = false
+z_index = 2000
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="buttons_menu" type="Node2D" parent="GUILayer"]
+z_index = 4000
+
+[node name="button_rematch" parent="GUILayer/buttons_menu" instance=ExtResource( 7 )]
+position = Vector2( -67, 3 )
+text = "Rematch"
+
+[node name="button_stageselect" parent="GUILayer/buttons_menu" instance=ExtResource( 7 )]
+position = Vector2( -67, 22 )
+text = "Stage Select"
+option_num = 2
+
+[node name="button_charselect" parent="GUILayer/buttons_menu" instance=ExtResource( 7 )]
+position = Vector2( -67, 41 )
+text = "Char. Select"
+option_num = 3
+
+[node name="button_mainmenu" parent="GUILayer/buttons_menu" instance=ExtResource( 7 )]
+position = Vector2( -67, 60 )
+text = "Main Menu"
+option_num = 4
+
+[node name="buttons_menu_online" type="Node2D" parent="GUILayer"]
+z_index = 4000
+
+[node name="button_rematch" parent="GUILayer/buttons_menu_online" instance=ExtResource( 7 )]
+position = Vector2( -67, 3 )
+text = "Rematch"
+
+[node name="button_stageselect" parent="GUILayer/buttons_menu_online" instance=ExtResource( 7 )]
+position = Vector2( -67, 22 )
+text = "Stage Select"
+option_num = 2
+
+[node name="button_charselect" parent="GUILayer/buttons_menu_online" instance=ExtResource( 7 )]
+position = Vector2( -67, 41 )
+text = "Char. Select"
+option_num = 3
+
+[node name="button_mainmenu" parent="GUILayer/buttons_menu_online" instance=ExtResource( 7 )]
+position = Vector2( -67, 60 )
+text = "Back to Lobby"
+option_num = 4
+
+[node name="buttons_pause" type="Node2D" parent="GUILayer"]
+z_index = 4000
+
+[node name="button_resume" parent="GUILayer/buttons_pause" instance=ExtResource( 7 )]
+position = Vector2( -67, 3 )
+text = "Resume"
+
+[node name="button_stageselect" parent="GUILayer/buttons_pause" instance=ExtResource( 7 )]
+position = Vector2( -67, 22 )
+text = "Stage Select"
+option_num = 2
+
+[node name="button_charselect" parent="GUILayer/buttons_pause" instance=ExtResource( 7 )]
+position = Vector2( -67, 41 )
+text = "Char. Select"
+option_num = 3
+
+[node name="button_mainmenu" parent="GUILayer/buttons_pause" instance=ExtResource( 7 )]
+position = Vector2( -67, 60 )
+text = "Main Menu"
+option_num = 4
+
+[node name="buttons_pause_arcade" type="Node2D" parent="GUILayer"]
+z_index = 4000
+
+[node name="button_resume" parent="GUILayer/buttons_pause_arcade" instance=ExtResource( 7 )]
+position = Vector2( -67, 22 )
+text = "Resume"
+
+[node name="button_charselect" parent="GUILayer/buttons_pause_arcade" instance=ExtResource( 7 )]
+position = Vector2( -67, 41 )
+text = "Char. Select"
+option_num = 2
+
+[node name="button_mainmenu" parent="GUILayer/buttons_pause_arcade" instance=ExtResource( 7 )]
+position = Vector2( -67, 60 )
+text = "Main Menu"
+option_num = 3
+
+[node name="buttons_rematch" type="Node2D" parent="GUILayer"]
+z_index = 4000
+
+[node name="button_rematch" parent="GUILayer/buttons_rematch" instance=ExtResource( 7 )]
+position = Vector2( -67, 41 )
+text = "Rematch"
+
+[node name="button_mainmenu" parent="GUILayer/buttons_rematch" instance=ExtResource( 7 )]
+position = Vector2( -67, 60 )
+text = "Main Menu"
+option_num = 2
+
+[node name="buttons_continue" type="Node2D" parent="GUILayer"]
+z_index = 4000
+
+[node name="button_continue" parent="GUILayer/buttons_continue" instance=ExtResource( 7 )]
+position = Vector2( -67, 22 )
+text = "Continue"
+
+[node name="label_continues" type="Label" parent="GUILayer/buttons_continue/button_continue"]
+margin_left = -32.0
+margin_top = -26.0
+margin_right = 76.0
+margin_bottom = -2.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Continues: 0"
+
+[node name="button_charselect" parent="GUILayer/buttons_continue" instance=ExtResource( 7 )]
+position = Vector2( -67, 41 )
+text = "Char. Select"
+option_num = 2
+
+[node name="button_mainmenu" parent="GUILayer/buttons_continue" instance=ExtResource( 7 )]
+position = Vector2( -67, 60 )
+text = "Main Menu"
+option_num = 3
+
+[node name="buttons_restart" type="Node2D" parent="GUILayer"]
+z_index = 4000
+
+[node name="button_restart" parent="GUILayer/buttons_restart" instance=ExtResource( 7 )]
+position = Vector2( -67, 22 )
+text = "Restart"
+
+[node name="label_continues" type="Label" parent="GUILayer/buttons_restart/button_restart"]
+margin_left = -32.0
+margin_top = -26.0
+margin_right = 76.0
+margin_bottom = -2.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Continues: 0"
+
+[node name="button_charselect" parent="GUILayer/buttons_restart" instance=ExtResource( 7 )]
+position = Vector2( -67, 41 )
+text = "Char. Select"
+option_num = 2
+
+[node name="button_mainmenu" parent="GUILayer/buttons_restart" instance=ExtResource( 7 )]
+position = Vector2( -67, 60 )
+text = "Main Menu"
+option_num = 3
+
+[node name="buttons_pause_training" type="Node2D" parent="GUILayer"]
+z_index = 4000
+
+[node name="button_resume" parent="GUILayer/buttons_pause_training" instance=ExtResource( 7 )]
+position = Vector2( -67, -16 )
+text = "Resume"
+
+[node name="button_trainingoptions" parent="GUILayer/buttons_pause_training" instance=ExtResource( 7 )]
+position = Vector2( -67, 3 )
+text = "Training Optns."
+option_num = 2
+
+[node name="button_stageselect" parent="GUILayer/buttons_pause_training" instance=ExtResource( 7 )]
+position = Vector2( -67, 22 )
+text = "Stage Select"
+option_num = 3
+
+[node name="button_charselect" parent="GUILayer/buttons_pause_training" instance=ExtResource( 7 )]
+position = Vector2( -67, 41 )
+text = "Char. Select"
+option_num = 4
+
+[node name="button_mainmenu" parent="GUILayer/buttons_pause_training" instance=ExtResource( 7 )]
+position = Vector2( -67, 60 )
+text = "Main Menu"
+option_num = 5
+
+[node name="buttons_trainingoptions" type="Node2D" parent="GUILayer"]
+z_index = 4000
+
+[node name="button_p1_points" parent="GUILayer/buttons_trainingoptions" instance=ExtResource( 7 )]
+position = Vector2( -67, -30 )
+script = ExtResource( 8 )
+text = "P1 Points:"
+setting_slide = true
+layer = 1
+
+[node name="button_p2_points" parent="GUILayer/buttons_trainingoptions" instance=ExtResource( 7 )]
+position = Vector2( -67, -15 )
+script = ExtResource( 9 )
+text = "P2 Points:"
+option_num = 2
+setting_slide = true
+layer = 1
+
+[node name="button_p2_control" parent="GUILayer/buttons_trainingoptions" instance=ExtResource( 7 )]
+position = Vector2( -67, 0 )
+script = ExtResource( 10 )
+text = "P2 Ctrl:"
+option_num = 3
+setting_slide = true
+layer = 1
+
+[node name="button_showhitboxes" parent="GUILayer/buttons_trainingoptions" instance=ExtResource( 7 )]
+position = Vector2( -67, 15 )
+script = ExtResource( 11 )
+text = "Hitboxes:"
+option_num = 4
+setting_slide = true
+layer = 1
+
+[node name="button_resetloc" parent="GUILayer/buttons_trainingoptions" instance=ExtResource( 7 )]
+position = Vector2( -67, 30 )
+script = ExtResource( 12 )
+text = "Rst Pos.:"
+option_num = 5
+setting_slide = true
+layer = 1
+
+[node name="button_resetposition" parent="GUILayer/buttons_trainingoptions" instance=ExtResource( 7 )]
+position = Vector2( -67, 45 )
+text = "Reset"
+option_num = 6
+layer = 1
+
+[node name="button_back" parent="GUILayer/buttons_trainingoptions" instance=ExtResource( 7 )]
+position = Vector2( -67, 60 )
+text = "Back"
+option_num = 7
+layer = 1
+
+[node name="buttons_pause_tutorial" type="Node2D" parent="GUILayer"]
+z_index = 4000
+
+[node name="button_resume" parent="GUILayer/buttons_pause_tutorial" instance=ExtResource( 7 )]
+position = Vector2( -67, 41 )
+text = "Resume"
+
+[node name="button_mainmenu" parent="GUILayer/buttons_pause_tutorial" instance=ExtResource( 7 )]
+position = Vector2( -67, 60 )
+text = "Main Menu"
+option_num = 2
+
+[node name="textbox" parent="GUILayer" instance=ExtResource( 13 )]
+position = Vector2( 0, 59 )
+z_index = 1500
+
+[node name="menu_banner" parent="GUILayer" instance=ExtResource( 14 )]
+position = Vector2( -68, 0 )
+z_index = 3000
+
+[node name="move_lists" type="Node2D" parent="GUILayer"]
+position = Vector2( 200, 0 )
+
+[node name="move_list_p1" parent="GUILayer/move_lists" instance=ExtResource( 15 )]
+position = Vector2( 50, -36 )
+z_index = 4000
+
+[node name="move_list_p2" parent="GUILayer/move_lists" instance=ExtResource( 15 )]
+position = Vector2( 50, 36 )
+z_index = 4000
+player1 = false
+
+[node name="bg_game" parent="." instance=ExtResource( 16 )]
+
+[node name="objects" type="Node2D" parent="."]
+
+[node name="online_timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[connection signal="timeout" from="online_timer" to="." method="_on_online_timer_timeout"]

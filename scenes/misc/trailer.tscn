@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/misc/trailer.gd" type="Script" id=1]
+[ext_resource path="res://graphics/bg/grid_scroll.png" type="Texture" id=2]
+[ext_resource path="res://resources/font/pixel_intv.tres" type="DynamicFont" id=3]
+[ext_resource path="res://graphics/hslogo.png" type="Texture" id=4]
+
+
+
+
+
+
+
+
+
+
+[node name="trailer" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="bg_grid" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.501961, 0.501961, 1, 0.752941 )
+position = Vector2( 0, 75 )
+texture = ExtResource( 2 )
+
+[node name="text" type="Label" parent="."]
+margin_top = 69.0
+margin_right = 256.0
+margin_bottom = 83.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "HYPERFIGHT"
+align = 1
+
+[node name="logo" type="Sprite" parent="."]
+visible = false
+position = Vector2( 127.711, 71.8589 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )

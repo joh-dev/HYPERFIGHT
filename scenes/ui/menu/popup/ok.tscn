@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://graphics/ui/menu/popup/ok.png" type="Texture" id=1]
+[ext_resource path="res://scripts/ui/menu/popup/ok.gd" type="Script" id=2]
+[ext_resource path="res://resources/font/pixel_intv.tres" type="DynamicFont" id=3]
+
+
+
+
+
+
+
+
+
+
+
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "ok"
+length = 0.06
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.04 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[node name="menu_ok" type="Sprite"]
+texture = ExtResource( 1 )
+hframes = 3
+script = ExtResource( 2 )
+
+[node name="label_ok" type="Label" parent="."]
+margin_left = -54.0
+margin_top = 18.0
+margin_right = 54.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 3 )
+text = "OK"
+align = 1
+
+[node name="label_text" type="Label" parent="."]
+margin_left = -54.0
+margin_top = -29.0
+margin_right = 54.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 3 )
+custom_constants/line_spacing = -3
+text = "Only available
+in the Steam
+version."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/ok = SubResource( 1 )

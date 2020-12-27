@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/special_boom.ogg-9f23d6c0dbf604ec6987c46d4d1fb8eb.oggstr"
+
+[deps]
+
+source_file="res://audio/sfx/game/char/yoyo/special_boom.ogg"
+dest_files=[ "res://.import/special_boom.ogg-9f23d6c0dbf604ec6987c46d4d1fb8eb.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

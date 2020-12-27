@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://graphics/ui/menu/pattern.png" type="Texture" id=1]
+[ext_resource path="res://scripts/ui/menu/pattern.gd" type="Script" id=2]
+
+
+
+
+
+
+[node name="menu_pattern" type="Sprite"]
+self_modulate = Color( 0.501961, 0.501961, 0.501961, 1 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="color_pattern" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -128, -16 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 256, 32 )

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resources/font/pixel_intv.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scripts/ui/select/scroll_label.gd" type="Script" id=2]
+
+
+
+
+
+
+
+[node name="scroll_label" type="Label"]
+margin_left = -146.0
+margin_top = -76.0
+margin_right = 34.0
+margin_bottom = -62.0
+custom_fonts/font = ExtResource( 1 )
+align = 1
+script = ExtResource( 2 )

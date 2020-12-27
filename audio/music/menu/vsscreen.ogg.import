@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/vsscreen.ogg-5c49e6870fb492654af7fdd953f2c252.oggstr"
+
+[deps]
+
+source_file="res://audio/music/menu/vsscreen.ogg"
+dest_files=[ "res://.import/vsscreen.ogg-5c49e6870fb492654af7fdd953f2c252.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

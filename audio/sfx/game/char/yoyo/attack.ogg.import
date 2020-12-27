@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/attack.ogg-228bc2d41868ac7152bcdc20e20a2cdc.oggstr"
+
+[deps]
+
+source_file="res://audio/sfx/game/char/yoyo/attack.ogg"
+dest_files=[ "res://.import/attack.ogg-228bc2d41868ac7152bcdc20e20a2cdc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

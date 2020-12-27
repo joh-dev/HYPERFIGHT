@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hit.ogg-10a6049c1167629711cab1b4d48dcc32.oggstr"
+
+[deps]
+
+source_file="res://audio/sfx/game/char/yoyo/hit.ogg"
+dest_files=[ "res://.import/hit.ogg-10a6049c1167629711cab1b4d48dcc32.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

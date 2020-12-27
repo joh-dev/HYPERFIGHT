@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/ui/game/scythe/meter.gd" type="Script" id=1]
+[ext_resource path="res://graphics/ui/game/scythe/meter.png" type="Texture" id=2]
+[ext_resource path="res://scenes/ui/game/scythe/meter_point.tscn" type="PackedScene" id=3]
+
+
+
+
+
+
+
+
+
+
+
+
+[node name="meter_scythe" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="meter" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="points" type="Node2D" parent="."]
+
+[node name="meter_scythe_point1" parent="points" instance=ExtResource( 3 )]
+position = Vector2( -24, 0 )
+
+[node name="meter_scythe_point2" parent="points" instance=ExtResource( 3 )]
+position = Vector2( -12, 0 )
+
+[node name="meter_scythe_point3" parent="points" instance=ExtResource( 3 )]
+
+[node name="meter_scythe_point4" parent="points" instance=ExtResource( 3 )]
+position = Vector2( 12, 0 )
+
+[node name="meter_scythe_point5" parent="points" instance=ExtResource( 3 )]
+position = Vector2( 24, 0 )

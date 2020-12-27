@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/super.ogg-8fe5a9ea77160a017bfb7e295b2546ca.oggstr"
+
+[deps]
+
+source_file="res://audio/sfx/game/char/slime/blue/super.ogg"
+dest_files=[ "res://.import/super.ogg-8fe5a9ea77160a017bfb7e295b2546ca.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,276 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://scripts/screen/charselect.gd" type="Script" id=1]
+[ext_resource path="res://graphics/bg/grid_back.png" type="Texture" id=2]
+[ext_resource path="res://graphics/bg/grid_gradient.png" type="Texture" id=3]
+[ext_resource path="res://graphics/ui/transition.png" type="Texture" id=4]
+[ext_resource path="res://scenes/ui/menu/scroll_label.tscn" type="PackedScene" id=5]
+[ext_resource path="res://resources/font/pixel_intv.tres" type="DynamicFont" id=6]
+[ext_resource path="res://scenes/ui/select/char/portrait.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/ui/select/char/preview.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/ui/menu/popup/yesno.tscn" type="PackedScene" id=9]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	tex.a = 1.0 - UV.x;
+	COLOR = tex;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	tex.a = UV.x;
+	COLOR = tex;
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "start"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("bg_back:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.07, 0.09, 0.11, 0.13, 0.15, 0.18, 0.21, 0.25, 0.3, 0.37, 0.47, 1.1, 1.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 15, 16 ]
+}
+
+[node name="charselect" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bg_back" type="Sprite" parent="."]
+z_index = -4000
+texture = ExtResource( 2 )
+hframes = 17
+frame = 16
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bg_grid_player1" type="Sprite" parent="."]
+modulate = Color( 1, 0.223529, 0.223529, 1 )
+material = SubResource( 2 )
+position = Vector2( -88, 0 )
+z_index = -4000
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bg_grid_player2" type="Sprite" parent="."]
+modulate = Color( 0.160784, 0.211765, 1, 1 )
+material = SubResource( 4 )
+position = Vector2( 88, 0 )
+z_index = -4000
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="transition" type="Sprite" parent="."]
+visible = false
+z_index = 2000
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="labels" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0.501961 )
+
+[node name="label_select" parent="labels" instance=ExtResource( 5 )]
+margin_left = -128.0
+margin_right = 15.0
+text = "SELECT YOUR CHARACTER"
+left_border = -282
+right_border = 180
+
+[node name="label_select2" parent="labels" instance=ExtResource( 5 )]
+margin_left = 26.0
+margin_right = 169.0
+text = "SELECT YOUR CHARACTER"
+left_border = -282
+right_border = 180
+
+[node name="label_select3" parent="labels" instance=ExtResource( 5 )]
+margin_left = -282.0
+margin_right = -139.0
+text = "SELECT YOUR CHARACTER"
+left_border = -282
+right_border = 180
+
+[node name="label_select4" parent="labels" instance=ExtResource( 5 )]
+margin_left = -128.0
+margin_top = 63.0
+margin_right = 15.0
+margin_bottom = 77.0
+text = "SELECT YOUR CHARACTER"
+move = Vector2( -1, 0 )
+left_border = -282
+right_border = 180
+
+[node name="label_select5" parent="labels" instance=ExtResource( 5 )]
+margin_left = 26.0
+margin_top = 63.0
+margin_right = 169.0
+margin_bottom = 77.0
+text = "SELECT YOUR CHARACTER"
+move = Vector2( -1, 0 )
+left_border = -282
+right_border = 180
+
+[node name="label_select6" parent="labels" instance=ExtResource( 5 )]
+margin_left = -282.0
+margin_top = 63.0
+margin_right = -139.0
+margin_bottom = 77.0
+text = "SELECT YOUR CHARACTER"
+move = Vector2( -1, 0 )
+left_border = -282
+right_border = 180
+
+[node name="online_labels" type="Node2D" parent="."]
+
+[node name="label_name_player1" type="Label" parent="online_labels"]
+margin_left = -120.0
+margin_top = 53.0
+margin_right = -34.0
+margin_bottom = 82.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color_shadow = Color( 1, 0.25098, 0.25098, 1 )
+custom_constants/line_spacing = -3
+text = "Player 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label_name_player2" type="Label" parent="online_labels"]
+margin_top = 53.0
+margin_right = 120.0
+margin_bottom = 82.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color_shadow = Color( 0.25098, 0.25098, 1, 1 )
+custom_constants/line_spacing = -3
+text = "Player 2"
+align = 2
+
+[node name="label_timer" type="Label" parent="online_labels"]
+margin_left = -16.0
+margin_top = -64.0
+margin_right = 16.0
+margin_bottom = -48.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color_shadow = Color( 0.72549, 0.313726, 0.588235, 1 )
+custom_constants/line_spacing = -3
+text = "30"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="portraits" type="Node2D" parent="."]
+
+[node name="portrait_goto" parent="portraits" instance=ExtResource( 7 )]
+position = Vector2( -26, -26 )
+
+[node name="portrait_yoyo" parent="portraits" instance=ExtResource( 7 )]
+position = Vector2( 0, -26 )
+character = 1
+
+[node name="portrait_kero" parent="portraits" instance=ExtResource( 7 )]
+position = Vector2( 26, -26 )
+character = 2
+
+[node name="portrait_time" parent="portraits" instance=ExtResource( 7 )]
+position = Vector2( -26, 0 )
+character = 3
+
+[node name="portrait_sword" parent="portraits" instance=ExtResource( 7 )]
+position = Vector2( 26, 0 )
+character = 4
+
+[node name="portrait_slime" parent="portraits" instance=ExtResource( 7 )]
+position = Vector2( -26, 26 )
+character = 5
+
+[node name="portrait_scythe" parent="portraits" instance=ExtResource( 7 )]
+position = Vector2( 0, 26 )
+character = 6
+
+[node name="portrait_darkgoto" parent="portraits" instance=ExtResource( 7 )]
+position = Vector2( 26, 26 )
+character = 7
+
+[node name="portrait_random" parent="portraits" instance=ExtResource( 7 )]
+character = 8
+
+[node name="preview_player1" parent="." instance=ExtResource( 8 )]
+position = Vector2( -82, -6 )
+
+[node name="preview_player2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 83, -6 )
+player_num = 2
+
+[node name="online_timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+
+[node name="menu_yesno" parent="." instance=ExtResource( 9 )]
+visible = false
+z_index = 4000
+
+[node name="locked_portraits" type="Node2D" parent="."]
+
+[node name="label_time" type="Label" parent="."]
+margin_left = 49.0
+margin_top = -17.0
+margin_right = 129.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color_shadow = Color( 0.72549, 0.313726, 0.588235, 1 )
+custom_constants/line_spacing = -3
+text = "99:59"
+align = 1
+
+[node name="label_time2" type="Label" parent="label_time"]
+margin_top = -10.0
+margin_right = 80.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color_shadow = Color( 0.72549, 0.313726, 0.588235, 1 )
+custom_constants/line_spacing = -3
+text = "Record:"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "start"
+anims/start = SubResource( 5 )
+[connection signal="timeout" from="online_timer" to="." method="_on_online_timer_timeout"]

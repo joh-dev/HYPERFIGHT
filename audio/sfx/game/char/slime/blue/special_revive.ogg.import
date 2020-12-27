@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/special_revive.ogg-3afc8c83d284fdf6afdaf010a9404563.oggstr"
+
+[deps]
+
+source_file="res://audio/sfx/game/char/slime/blue/special_revive.ogg"
+dest_files=[ "res://.import/special_revive.ogg-3afc8c83d284fdf6afdaf010a9404563.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

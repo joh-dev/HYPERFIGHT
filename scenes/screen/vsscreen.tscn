@@ -1,0 +1,141 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/screen/vsscreen.gd" type="Script" id=1]
+[ext_resource path="res://graphics/bg/vsscreen/vstext.png" type="Texture" id=2]
+[ext_resource path="res://graphics/bg/grid_scroll.png" type="Texture" id=3]
+[ext_resource path="res://graphics/ui/transition.png" type="Texture" id=4]
+[ext_resource path="res://scenes/ui/menu/scroll_label.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ui/select/char/preview.tscn" type="PackedScene" id=6]
+[ext_resource path="res://resources/font/pixel_intv.tres" type="DynamicFont" id=7]
+
+[node name="vsscreen" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bg_text" type="Sprite" parent="."]
+z_index = -2000
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bg_grid" type="Sprite" parent="."]
+z_index = -4000
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="transition" type="Sprite" parent="."]
+visible = false
+z_index = 4000
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="labels" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0.501961 )
+z_index = -1
+
+[node name="label_ready" parent="labels" instance=ExtResource( 5 )]
+margin_left = -128.0
+margin_right = -8.0
+text = "GET READY TO FIGHT"
+left_border = -260
+right_border = 140
+
+[node name="label_ready2" parent="labels" instance=ExtResource( 5 )]
+margin_left = 3.0
+margin_right = 123.0
+text = "GET READY TO FIGHT"
+left_border = -260
+right_border = 140
+
+[node name="label_ready3" parent="labels" instance=ExtResource( 5 )]
+margin_left = -259.0
+margin_right = -139.0
+text = "GET READY TO FIGHT"
+left_border = -260
+right_border = 140
+
+[node name="label_ready4" parent="labels" instance=ExtResource( 5 )]
+margin_left = -259.0
+margin_top = 63.0
+margin_right = -139.0
+margin_bottom = 77.0
+text = "GET READY TO FIGHT"
+move = Vector2( -1, 0 )
+left_border = -260
+right_border = 140
+
+[node name="label_ready5" parent="labels" instance=ExtResource( 5 )]
+margin_left = 3.0
+margin_top = 63.0
+margin_right = 123.0
+margin_bottom = 77.0
+text = "GET READY TO FIGHT"
+move = Vector2( -1, 0 )
+left_border = -260
+right_border = 140
+
+[node name="label_ready6" parent="labels" instance=ExtResource( 5 )]
+margin_left = -128.0
+margin_top = 63.0
+margin_right = -8.0
+margin_bottom = 77.0
+text = "GET READY TO FIGHT"
+move = Vector2( -1, 0 )
+left_border = -260
+right_border = 140
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="preview_player1" parent="." instance=ExtResource( 6 )]
+position = Vector2( -81, -25 )
+y_scroll_offset = -100
+
+[node name="preview_player2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 79, 7 )
+player_num = 2
+y_scroll_offset = 100
+
+[node name="label_stage" type="Label" parent="."]
+margin_left = -50.0
+margin_top = -61.0
+margin_right = 50.0
+margin_bottom = -47.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.72549, 0.313726, 0.588235, 1 )
+text = "STAGE 1"
+align = 1
+
+[node name="label_player1_name" type="Label" parent="."]
+margin_left = -123.0
+margin_top = -63.0
+margin_right = -1.0
+margin_bottom = -49.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 0, 0, 1 )
+text = "Player 1"
+
+[node name="label_player2_name" type="Label" parent="."]
+margin_left = 1.71057
+margin_top = 49.6263
+margin_right = 123.711
+margin_bottom = 63.6263
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0.501961, 1, 1 )
+text = "Player 2"
+align = 2

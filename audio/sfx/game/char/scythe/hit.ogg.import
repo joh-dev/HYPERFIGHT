@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hit.ogg-f3661fba7fdafeb7122eefcff0a63669.oggstr"
+
+[deps]
+
+source_file="res://audio/sfx/game/char/scythe/hit.ogg"
+dest_files=[ "res://.import/hit.ogg-f3661fba7fdafeb7122eefcff0a63669.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

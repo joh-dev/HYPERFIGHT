@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://graphics/ui/lobby/banner/player.png" type="Texture" id=1]
+[ext_resource path="res://scripts/ui/lobby/banner/ready.gd" type="Script" id=2]
+[ext_resource path="res://resources/font/pixel_intv.tres" type="DynamicFont" id=3]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[node name="lobby_ready_banner" type="Sprite"]
+texture = ExtResource( 1 )
+centered = false
+flip_h = true
+script = ExtResource( 2 )
+
+[node name="label_ready" type="Label" parent="."]
+margin_left = 64.0
+margin_top = 2.0
+margin_right = 125.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 3 )
+text = "Not ready"
+align = 2

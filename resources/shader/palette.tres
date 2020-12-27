@@ -1,0 +1,137 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 color_o0;
+uniform vec4 color_n0;
+uniform vec4 color_o1;
+uniform vec4 color_n1;
+uniform vec4 color_o2;
+uniform vec4 color_n2;
+uniform vec4 color_o3;
+uniform vec4 color_n3;
+uniform vec4 color_o4;
+uniform vec4 color_n4;
+uniform vec4 color_o5;
+uniform vec4 color_n5;
+uniform vec4 color_o6;
+uniform vec4 color_n6;
+uniform vec4 color_o7;
+uniform vec4 color_n7;
+uniform vec4 color_o8;
+uniform vec4 color_n8;
+uniform vec4 color_o9;
+uniform vec4 color_n9;
+uniform vec4 color_o10;
+uniform vec4 color_n10;
+uniform vec4 color_o11;
+uniform vec4 color_n11;
+uniform vec4 color_o12;
+uniform vec4 color_n12;
+uniform vec4 color_o13;
+uniform vec4 color_n13;
+uniform vec4 color_o14;
+uniform vec4 color_n14;
+uniform vec4 color_o15;
+uniform vec4 color_n15;
+uniform vec4 color_o16;
+uniform vec4 color_n16;
+uniform vec4 color_o17;
+uniform vec4 color_n17;
+uniform vec4 color_o18;
+uniform vec4 color_n18;
+uniform vec4 color_o19;
+uniform vec4 color_n19;
+
+uniform float threshold;
+
+uniform float white_amount;
+uniform float blue_amount;
+
+void apply_palette_color(inout vec4 texture_color, vec4 color_o, vec4 color_n) {
+	vec3 diff = texture_color.rgb - color_o.rgb;
+	if(abs(length(diff)) < threshold)
+	{
+	    texture_color.rgb = color_n.rgb * (vec3(1.0, 1.0, 1.0) - diff);
+	}
+}
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	
+	// modify palette
+	apply_palette_color(texture_color, color_o0, color_n0);
+	apply_palette_color(texture_color, color_o1, color_n1);
+	apply_palette_color(texture_color, color_o2, color_n2);
+	apply_palette_color(texture_color, color_o3, color_n3);
+	apply_palette_color(texture_color, color_o4, color_n4);
+	apply_palette_color(texture_color, color_o5, color_n5);
+	apply_palette_color(texture_color, color_o6, color_n6);
+	apply_palette_color(texture_color, color_o7, color_n7);
+	apply_palette_color(texture_color, color_o8, color_n8);
+	apply_palette_color(texture_color, color_o9, color_n9);
+	apply_palette_color(texture_color, color_o10, color_n10);
+	apply_palette_color(texture_color, color_o11, color_n11);
+	apply_palette_color(texture_color, color_o12, color_n12);
+	apply_palette_color(texture_color, color_o13, color_n13);
+	apply_palette_color(texture_color, color_o14, color_n14);
+	apply_palette_color(texture_color, color_o15, color_n15);
+	apply_palette_color(texture_color, color_o16, color_n16);
+	apply_palette_color(texture_color, color_o17, color_n17);
+	apply_palette_color(texture_color, color_o18, color_n18);
+	apply_palette_color(texture_color, color_o19, color_n19);
+	
+	// apply white amount
+	texture_color = vec4(mix(texture_color.rgb, vec3(1.0, 1.0, 1.0), white_amount), texture_color.a);
+	texture_color = vec4(mix(texture_color.rgb, vec3(0.0, 0.0, 1.0), blue_amount), texture_color.a);
+	
+	COLOR = texture_color;
+}"
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/color_o0 = null
+shader_param/color_n0 = null
+shader_param/color_o1 = null
+shader_param/color_n1 = null
+shader_param/color_o2 = null
+shader_param/color_n2 = null
+shader_param/color_o3 = null
+shader_param/color_n3 = null
+shader_param/color_o4 = null
+shader_param/color_n4 = null
+shader_param/color_o5 = null
+shader_param/color_n5 = null
+shader_param/color_o6 = null
+shader_param/color_n6 = null
+shader_param/color_o7 = null
+shader_param/color_n7 = null
+shader_param/color_o8 = null
+shader_param/color_n8 = null
+shader_param/color_o9 = null
+shader_param/color_n9 = null
+shader_param/color_o10 = null
+shader_param/color_n10 = null
+shader_param/color_o11 = null
+shader_param/color_n11 = null
+shader_param/color_o12 = null
+shader_param/color_n12 = null
+shader_param/color_o13 = null
+shader_param/color_n13 = null
+shader_param/color_o14 = null
+shader_param/color_n14 = null
+shader_param/color_o15 = null
+shader_param/color_n15 = null
+shader_param/color_o16 = null
+shader_param/color_n16 = null
+shader_param/color_o17 = null
+shader_param/color_n17 = null
+shader_param/color_o18 = null
+shader_param/color_n18 = null
+shader_param/color_o19 = null
+shader_param/color_n19 = null
+shader_param/threshold = null
+shader_param/white_amount = null
+shader_param/blue_amount = null

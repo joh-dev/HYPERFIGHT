@@ -1,0 +1,310 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://graphics/ui/select/char/portrait.png" type="Texture" id=1]
+[ext_resource path="res://scripts/ui/select/char/portrait.gd" type="Script" id=2]
+[ext_resource path="res://graphics/ui/select/char/portrait/scythe.png" type="Texture" id=3]
+[ext_resource path="res://resources/font/pixel_intv.tres" type="DynamicFont" id=4]
+[ext_resource path="res://graphics/ui/select/char/portrait/darkgoto.png" type="Texture" id=5]
+[ext_resource path="res://graphics/ui/select/char/portrait/goto.png" type="Texture" id=6]
+[ext_resource path="res://graphics/ui/select/char/portrait/kero.png" type="Texture" id=7]
+[ext_resource path="res://graphics/ui/select/char/portrait/locked.png" type="Texture" id=8]
+[ext_resource path="res://graphics/ui/select/char/portrait/random.png" type="Texture" id=9]
+[ext_resource path="res://graphics/ui/select/char/portrait/slime.png" type="Texture" id=10]
+[ext_resource path="res://graphics/ui/select/char/portrait/sword.png" type="Texture" id=11]
+[ext_resource path="res://graphics/ui/select/char/portrait/time.png" type="Texture" id=12]
+[ext_resource path="res://graphics/ui/select/char/portrait/yoyo.png" type="Texture" id=13]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "deselect"
+length = 0.06
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "select"
+length = 0.06
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.04 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+tracks/0/type = "value"
+tracks/0/path = NodePath("char:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath("char:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath("char:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+tracks/0/type = "value"
+tracks/0/path = NodePath("char:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+tracks/0/type = "value"
+tracks/0/path = NodePath("char:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "scythe"
+tracks/0/type = "value"
+tracks/0/path = NodePath("char:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+tracks/0/type = "value"
+tracks/0/path = NodePath("char:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 10 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+tracks/0/type = "value"
+tracks/0/path = NodePath("char:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+tracks/0/type = "value"
+tracks/0/path = NodePath("char:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+tracks/0/type = "value"
+tracks/0/path = NodePath("char:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 13 ) ]
+}
+
+[node name="portrait" type="Sprite" groups=[
+"ui_select",
+]]
+texture = ExtResource( 1 )
+hframes = 4
+script = ExtResource( 2 )
+
+[node name="char" type="Sprite" parent="."]
+z_index = -1
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 4, 0, 24, 24 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label_player1_node" type="Node2D" parent="."]
+position = Vector2( 4, 0 )
+z_index = 100
+
+[node name="label_player1" type="Label" parent="label_player1_node"]
+margin_left = -16.0
+margin_top = -22.0
+margin_right = 24.0
+margin_bottom = -8.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "P1"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label_player2_node" type="Node2D" parent="."]
+position = Vector2( -4, 0 )
+z_index = 100
+
+[node name="label_player2" type="Label" parent="label_player2_node"]
+margin_left = -23.0
+margin_top = 9.0
+margin_right = 17.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 1, 1 )
+text = "P2"
+align = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="anim_player" type="AnimationPlayer" parent="."]
+anims/deselect = SubResource( 1 )
+anims/select = SubResource( 2 )
+
+[node name="char_anim_player" type="AnimationPlayer" parent="."]
+anims/darkgoto = SubResource( 3 )
+anims/goto = SubResource( 4 )
+anims/kero = SubResource( 5 )
+anims/locked = SubResource( 6 )
+anims/random = SubResource( 7 )
+anims/scythe = SubResource( 8 )
+anims/slime = SubResource( 9 )
+anims/sword = SubResource( 10 )
+anims/time = SubResource( 11 )
+anims/yoyo = SubResource( 12 )

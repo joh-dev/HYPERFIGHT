@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/attack.ogg-500817f92abfb766a2c1e65882ed6f3c.oggstr"
+
+[deps]
+
+source_file="res://audio/sfx/game/char/scythe/attack.ogg"
+dest_files=[ "res://.import/attack.ogg-500817f92abfb766a2c1e65882ed6f3c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

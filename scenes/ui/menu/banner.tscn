@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://graphics/ui/menu/banner/v.png" type="Texture" id=1]
+[ext_resource path="res://scripts/ui/menu/banner.gd" type="Script" id=2]
+
+
+
+
+
+
+
+
+[node name="menu_banner" type="Sprite"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 98, 150 )
+script = ExtResource( 2 )

@@ -1,0 +1,12 @@
+[gd_scene format=2]
+
+[node name="global_audio" type="AudioStreamPlayer" index="0"]
+
+stream = null
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+

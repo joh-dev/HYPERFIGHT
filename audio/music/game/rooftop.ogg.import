@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/rooftop.ogg-7e003a290efc0262bd9b9c0f2b6c3ec4.oggstr"
+
+[deps]
+
+source_file="res://audio/music/game/rooftop.ogg"
+dest_files=[ "res://.import/rooftop.ogg-7e003a290efc0262bd9b9c0f2b6c3ec4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

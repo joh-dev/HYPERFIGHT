@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://graphics/ui/menu/popup/yesno.png" type="Texture" id=1]
+[ext_resource path="res://scripts/ui/menu/popup/yesno.gd" type="Script" id=2]
+[ext_resource path="res://resources/font/pixel_intv.tres" type="DynamicFont" id=3]
+
+
+
+
+
+
+
+
+
+
+
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "no"
+length = 0.06
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.04 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "yes"
+length = 0.06
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.04 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[node name="menu_yesno" type="Sprite"]
+texture = ExtResource( 1 )
+hframes = 6
+frame = 2
+script = ExtResource( 2 )
+
+[node name="label_yes" type="Label" parent="."]
+margin_left = -38.0
+margin_top = 18.0
+margin_right = -16.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 3 )
+text = "YES"
+align = 1
+
+[node name="label_no" type="Label" parent="."]
+margin_left = 21.0
+margin_top = 18.0
+margin_right = 35.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 3 )
+text = "NO"
+align = 1
+
+[node name="label_text" type="Label" parent="."]
+margin_left = -54.0
+margin_top = -21.0
+margin_right = 54.0
+margin_bottom = 21.0
+custom_fonts/font = ExtResource( 3 )
+custom_constants/line_spacing = -3
+text = "Return to 
+previous menu?"
+align = 1
+autowrap = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/no = SubResource( 1 )
+anims/yes = SubResource( 2 )

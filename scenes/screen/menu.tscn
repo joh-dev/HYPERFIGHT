@@ -1,0 +1,1481 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://scripts/screen/menu.gd" type="Script" id=1]
+[ext_resource path="res://graphics/ui/menu/logo/gradient.png" type="Texture" id=2]
+[ext_resource path="res://graphics/bg/menu/grid.png" type="Texture" id=3]
+[ext_resource path="res://graphics/ui/transition.png" type="Texture" id=4]
+[ext_resource path="res://scenes/ui/menu/banner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ui/menu/pattern.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/ui/menu/popup/ok.tscn" type="PackedScene" id=7]
+[ext_resource path="res://resources/font/savior1.tres" type="DynamicFont" id=8]
+[ext_resource path="res://scenes/ui/menu/button.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/find/password.gd" type="Script" id=10]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/lobby.gd" type="Script" id=11]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/find/search/page.gd" type="Script" id=12]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/quickmatch/char.gd" type="Script" id=13]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/quickmatch/palette.gd" type="Script" id=14]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/host/name.gd" type="Script" id=15]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/host/rematch.gd" type="Script" id=16]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/host/delay.gd" type="Script" id=17]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/host/chat.gd" type="Script" id=18]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/host/password.gd" type="Script" id=19]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/host/rotation.gd" type="Script" id=20]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/host/stage.gd" type="Script" id=21]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/host/maxplayers.gd" type="Script" id=22]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/host/matchlimit.gd" type="Script" id=23]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/host/open.gd" type="Script" id=24]
+[ext_resource path="res://scripts/ui/menu/button/menu/online/host/page.gd" type="Script" id=25]
+[ext_resource path="res://scenes/ui/menu/news.tscn" type="PackedScene" id=26]
+[ext_resource path="res://scripts/ui/menu/button/menu/options/game/cpudiff.gd" type="Script" id=27]
+[ext_resource path="res://scripts/ui/menu/button/menu/options/graphics/screen.gd" type="Script" id=28]
+[ext_resource path="res://scripts/ui/menu/button/menu/options/graphics/vsync.gd" type="Script" id=29]
+[ext_resource path="res://scripts/ui/menu/button/menu/options/audio/musvol.gd" type="Script" id=30]
+[ext_resource path="res://scripts/ui/menu/button/menu/options/audio/sfxvol.gd" type="Script" id=31]
+[ext_resource path="res://scripts/ui/menu/button/menu/options/controls/p1/dtdash.gd" type="Script" id=32]
+[ext_resource path="res://scripts/ui/menu/button/menu/options/controls/p2/dtdash.gd" type="Script" id=33]
+[ext_resource path="res://graphics/ui/load/studiojoh.png" type="Texture" id=34]
+[ext_resource path="res://scripts/ui/menu/button/menu/options/controls/p2/assuper.gd" type="Script" id=35]
+[ext_resource path="res://scripts/ui/menu/button/menu/options/controls/p1/assuper.gd" type="Script" id=36]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 color_o0;
+uniform vec4 color_n0;
+uniform vec4 color_o1;
+uniform vec4 color_n1;
+
+uniform float threshold;
+
+uniform float white_amount;
+
+void apply_palette_color(inout vec4 texture_color, vec4 color_o, vec4 color_n) {
+	vec3 diff = texture_color.rgb - color_o.rgb;
+	if(abs(length(diff)) < threshold)
+	{
+	    texture_color.rgb = color_n.rgb * (vec3(1.0, 1.0, 1.0) - diff);
+	}
+}
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	
+	// modify palette
+	apply_palette_color(texture_color, color_o0, color_n0);
+	apply_palette_color(texture_color, color_o1, color_n1);
+	
+	// apply white amount
+	texture_color = vec4(mix(texture_color.rgb, vec3(1.0, 1.0, 1.0), white_amount), texture_color.a);
+	
+	COLOR = texture_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/color_o0 = null
+shader_param/color_n0 = null
+shader_param/color_o1 = null
+shader_param/color_n1 = null
+shader_param/threshold = null
+shader_param/white_amount = null
+
+[node name="menu" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="logo" type="Sprite" parent="."]
+position = Vector2( 0, -11 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bg_grid" type="Sprite" parent="."]
+material = SubResource( 2 )
+z_index = -4000
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 256, 256 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="transition" type="Sprite" parent="."]
+visible = false
+z_index = 4000
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="menu_banner" parent="." instance=ExtResource( 5 )]
+position = Vector2( -68, 0 )
+
+[node name="menu_pattern" parent="." instance=ExtResource( 6 )]
+position = Vector2( 0, -59 )
+scale = Vector2( 1, -1 )
+z_index = -2000
+color = Color( 0.882353, 0.356863, 0.576471, 1 )
+
+[node name="menu_pattern2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 0, 59 )
+z_index = -2000
+color = Color( 0.619608, 0.886275, 0.984314, 1 )
+
+[node name="menu_ok" parent="." instance=ExtResource( 7 )]
+z_index = 4000
+
+[node name="label_press" type="Label" parent="."]
+margin_left = -70.0
+margin_top = 32.0
+margin_right = 70.0
+margin_bottom = 61.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0.603922, 0.901961, 0.909804, 1 )
+custom_colors/font_color_shadow = Color( 0.262745, 0.0784314, 0.247059, 1 )
+text = "Press Start Button"
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="label_ver" type="Label" parent="."]
+margin_left = 17.0
+margin_top = 37.0
+margin_right = 123.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+text = "v2.0"
+align = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="buttons" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_online" parent="buttons" instance=ExtResource( 9 )]
+position = Vector2( -67, -45 )
+text = "Online Fight"
+color = Color( 0.25098, 0.701961, 0.690196, 1 )
+
+[node name="button_versus" parent="buttons" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+text = "Local Fight"
+option_num = 2
+color = Color( 0.23407, 0.518864, 0.921875, 1 )
+
+[node name="button_solomodes" parent="buttons" instance=ExtResource( 9 )]
+position = Vector2( -67, -9 )
+text = "Solo Modes"
+option_num = 3
+color = Color( 0.682353, 0.396078, 0.647059, 1 )
+
+[node name="button_news" parent="buttons" instance=ExtResource( 9 )]
+position = Vector2( -67, 9 )
+text = "News/Links"
+option_num = 4
+color = Color( 0.686275, 0.309804, 0.415686, 1 )
+
+[node name="button_options" parent="buttons" instance=ExtResource( 9 )]
+position = Vector2( -67, 27 )
+text = "Options"
+option_num = 5
+color = Color( 0.501961, 0.501961, 0.501961, 1 )
+
+[node name="button_quit" parent="buttons" instance=ExtResource( 9 )]
+position = Vector2( -67, 45 )
+text = "Quit"
+option_num = 6
+color = Color( 0.376471, 0.376471, 0.376471, 1 )
+
+[node name="buttons_online" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_quickmatch" parent="buttons_online" instance=ExtResource( 9 )]
+position = Vector2( -67, -45 )
+text = "Find Lobby"
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 1
+
+[node name="button_hostlobby" parent="buttons_online" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+text = "Host Lobby"
+option_num = 2
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 1
+
+[node name="button_back" parent="buttons_online" instance=ExtResource( 9 )]
+position = Vector2( -67, 45 )
+text = "Back"
+option_num = 3
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 1
+
+[node name="buttons_online_findlobby" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_findmatch" parent="buttons_online_findlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, -45 )
+text = "Begin Search"
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 2
+
+[node name="button_findpassword" parent="buttons_online_findlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+script = ExtResource( 10 )
+text = "Password"
+option_num = 2
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_text = true
+layer = 2
+
+[node name="button_back" parent="buttons_online_findlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, 45 )
+text = "Back"
+option_num = 3
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 2
+
+[node name="buttons_online_findlobby_find" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_back" parent="buttons_online_findlobby_find" instance=ExtResource( 9 )]
+position = Vector2( 70, 58 )
+text = "Back"
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 3
+
+[node name="label_info" type="Label" parent="buttons_online_findlobby_find/button_back"]
+margin_left = -198.0
+margin_top = -66.0
+margin_right = 58.0
+margin_bottom = -43.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+text = "Finding lobbies...
+"
+align = 1
+
+[node name="buttons_online_findlobby_list" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_lobby1" parent="buttons_online_findlobby_list" instance=ExtResource( 9 )]
+position = Vector2( -67, -45 )
+script = ExtResource( 11 )
+text = "Lobby1"
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 3
+
+[node name="button_lobby2" parent="buttons_online_findlobby_list" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+script = ExtResource( 11 )
+text = "Lobby2"
+option_num = 2
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 3
+
+[node name="button_lobby3" parent="buttons_online_findlobby_list" instance=ExtResource( 9 )]
+position = Vector2( -67, -9 )
+script = ExtResource( 11 )
+text = "Lobby3"
+option_num = 3
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 3
+
+[node name="button_lobby4" parent="buttons_online_findlobby_list" instance=ExtResource( 9 )]
+position = Vector2( -67, 9 )
+script = ExtResource( 11 )
+text = "Lobby4"
+option_num = 4
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 3
+
+[node name="button_findpage" parent="buttons_online_findlobby_list" instance=ExtResource( 9 )]
+modulate = Color( 0.752941, 1, 0.752941, 1 )
+position = Vector2( -67, 27 )
+script = ExtResource( 12 )
+text = "Page 1/1"
+option_num = 5
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_slide = true
+layer = 3
+
+[node name="button_back" parent="buttons_online_findlobby_list" instance=ExtResource( 9 )]
+position = Vector2( -67, 45 )
+text = "Back"
+option_num = 6
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 3
+
+[node name="find_rect" type="ColorRect" parent="buttons_online_findlobby_list/button_back"]
+margin_left = 51.0
+margin_top = -97.0
+margin_right = 192.0
+margin_bottom = 7.0
+color = Color( 0, 0, 0, 0.752941 )
+
+[node name="label_name" type="Label" parent="buttons_online_findlobby_list/button_back/find_rect"]
+margin_left = 5.0
+margin_right = 135.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 8 )
+clip_text = true
+
+[node name="label_members" type="Label" parent="buttons_online_findlobby_list/button_back/find_rect"]
+margin_left = 5.0
+margin_top = 12.0
+margin_right = 135.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 8 )
+clip_text = true
+
+[node name="label_rematch" type="Label" parent="buttons_online_findlobby_list/button_back/find_rect"]
+margin_left = 5.0
+margin_top = 28.0
+margin_right = 135.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 8 )
+clip_text = true
+
+[node name="label_rotation" type="Label" parent="buttons_online_findlobby_list/button_back/find_rect"]
+margin_left = 5.0
+margin_top = 40.0
+margin_right = 135.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 8 )
+clip_text = true
+
+[node name="label_matchlimit" type="Label" parent="buttons_online_findlobby_list/button_back/find_rect"]
+margin_left = 5.0
+margin_top = 52.0
+margin_right = 135.0
+margin_bottom = 66.0
+custom_fonts/font = ExtResource( 8 )
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label_delay" type="Label" parent="buttons_online_findlobby_list/button_back/find_rect"]
+margin_left = 5.0
+margin_top = 64.0
+margin_right = 135.0
+margin_bottom = 78.0
+custom_fonts/font = ExtResource( 8 )
+clip_text = true
+
+[node name="label_stageselect" type="Label" parent="buttons_online_findlobby_list/button_back/find_rect"]
+margin_left = 5.0
+margin_top = 76.0
+margin_right = 135.0
+margin_bottom = 90.0
+custom_fonts/font = ExtResource( 8 )
+clip_text = true
+
+[node name="label_chat" type="Label" parent="buttons_online_findlobby_list/button_back/find_rect"]
+margin_left = 5.0
+margin_top = 88.0
+margin_right = 135.0
+margin_bottom = 102.0
+custom_fonts/font = ExtResource( 8 )
+clip_text = true
+
+[node name="buttons_online_findlobby_join" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_back" parent="buttons_online_findlobby_join" instance=ExtResource( 9 )]
+position = Vector2( 70, 58 )
+text = "Back"
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 3
+
+[node name="label_info" type="Label" parent="buttons_online_findlobby_join/button_back"]
+margin_left = -198.0
+margin_top = -66.0
+margin_right = 58.0
+margin_bottom = -43.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+text = "Joining lobby...
+"
+align = 1
+
+[node name="buttons_online_quickmatch" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_findmatch" parent="buttons_online_quickmatch" instance=ExtResource( 9 )]
+position = Vector2( -67, -45 )
+text = "Find Match"
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 2
+
+[node name="button_onlinechar" parent="buttons_online_quickmatch" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+script = ExtResource( 13 )
+text = "Ch: Shoto Goto"
+option_num = 2
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_slide = true
+layer = 2
+
+[node name="button_onlinepalette" parent="buttons_online_quickmatch" instance=ExtResource( 9 )]
+position = Vector2( -67, -9 )
+script = ExtResource( 14 )
+text = "Color: 1"
+option_num = 3
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_slide = true
+layer = 2
+
+[node name="button_back" parent="buttons_online_quickmatch" instance=ExtResource( 9 )]
+position = Vector2( -67, 45 )
+text = "Back"
+option_num = 4
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 2
+
+[node name="buttons_online_quickmatch_find" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_back" parent="buttons_online_quickmatch_find" instance=ExtResource( 9 )]
+position = Vector2( 70, 58 )
+text = "Back"
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 2
+
+[node name="label_info" type="Label" parent="buttons_online_quickmatch_find/button_back"]
+margin_left = -198.0
+margin_top = -66.0
+margin_right = 58.0
+margin_bottom = -43.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+text = "Finding match...
+"
+align = 1
+
+[node name="buttons_online_hostlobby" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_host" parent="buttons_online_hostlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, -45 )
+text = "Start Hosting"
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 2
+
+[node name="button_hostname" parent="buttons_online_hostlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+script = ExtResource( 15 )
+text = "Lobby Name"
+option_num = 2
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_text = true
+layer = 2
+
+[node name="button_hostrematch" parent="buttons_online_hostlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+script = ExtResource( 16 )
+text = "Rematch: None"
+option_num = 2
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_slide = true
+layer = 2
+page = 2
+
+[node name="button_hostdelay" parent="buttons_online_hostlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+script = ExtResource( 17 )
+text = "Delay: Auto"
+option_num = 2
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_slide = true
+layer = 2
+page = 3
+
+[node name="button_hostchat" parent="buttons_online_hostlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+script = ExtResource( 18 )
+text = "Chat: Enabled"
+option_num = 2
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_slide = true
+layer = 2
+page = 4
+
+[node name="button_hostpassword" parent="buttons_online_hostlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, -9 )
+script = ExtResource( 19 )
+text = "Password"
+option_num = 3
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_text = true
+layer = 2
+
+[node name="button_hostrotation" parent="buttons_online_hostlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, -9 )
+script = ExtResource( 20 )
+text = "Rot.: Win Stays"
+option_num = 3
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_slide = true
+layer = 2
+page = 2
+
+[node name="button_hoststage" parent="buttons_online_hostlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, -9 )
+script = ExtResource( 21 )
+text = "Random: Stage"
+option_num = 3
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_slide = true
+layer = 2
+page = 3
+
+[node name="button_hostmax" parent="buttons_online_hostlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, 9 )
+script = ExtResource( 22 )
+text = "Max Players: 2"
+option_num = 4
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_slide = true
+layer = 2
+
+[node name="button_hostmatchlimit" parent="buttons_online_hostlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, 9 )
+script = ExtResource( 23 )
+text = "Consec. Limit: 0"
+option_num = 4
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_slide = true
+layer = 2
+page = 2
+
+[node name="button_hostopen" parent="buttons_online_hostlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, 9 )
+script = ExtResource( 24 )
+text = "Open: Public"
+option_num = 4
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_slide = true
+layer = 2
+page = 3
+
+[node name="button_hostpage" parent="buttons_online_hostlobby" instance=ExtResource( 9 )]
+modulate = Color( 0.752941, 1, 0.752941, 1 )
+position = Vector2( -67, 27 )
+script = ExtResource( 25 )
+text = "Page 1/3"
+option_num = 5
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+setting_slide = true
+layer = 2
+
+[node name="button_back" parent="buttons_online_hostlobby" instance=ExtResource( 9 )]
+position = Vector2( -67, 45 )
+text = "Back"
+option_num = 6
+color = Color( 0.235294, 0.572549, 0.768627, 1 )
+layer = 2
+
+[node name="buttons_versus" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_p1vsp2" parent="buttons_versus" instance=ExtResource( 9 )]
+position = Vector2( -67, -45 )
+text = "P1 vs P2"
+color = Color( 0.384094, 0.339844, 0.90625, 1 )
+layer = 1
+
+[node name="button_p1vscpu" parent="buttons_versus" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+text = "P1 vs CPU"
+option_num = 2
+color = Color( 0.384094, 0.339844, 0.90625, 1 )
+layer = 1
+
+[node name="button_cpuvscpu" parent="buttons_versus" instance=ExtResource( 9 )]
+position = Vector2( -67, -9 )
+text = "CPU vs CPU"
+option_num = 3
+color = Color( 0.384094, 0.339844, 0.90625, 1 )
+layer = 1
+
+[node name="button_back" parent="buttons_versus" instance=ExtResource( 9 )]
+position = Vector2( -67, 45 )
+text = "Back"
+option_num = 4
+color = Color( 0.384094, 0.339844, 0.90625, 1 )
+layer = 1
+
+[node name="buttons_solomodes" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_arcademode" parent="buttons_solomodes" instance=ExtResource( 9 )]
+position = Vector2( -67, -45 )
+text = "Arcade Mode"
+color = Color( 0.709804, 0.341176, 0.529412, 1 )
+layer = 1
+
+[node name="button_trainingmode" parent="buttons_solomodes" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+text = "Training Mode"
+option_num = 2
+color = Color( 0.709804, 0.341176, 0.529412, 1 )
+layer = 1
+
+[node name="button_tutorial" parent="buttons_solomodes" instance=ExtResource( 9 )]
+position = Vector2( -67, -9 )
+text = "Tutorial"
+option_num = 3
+color = Color( 0.709804, 0.341176, 0.529412, 1 )
+layer = 1
+
+[node name="button_back" parent="buttons_solomodes" instance=ExtResource( 9 )]
+position = Vector2( -67, 45 )
+text = "Back"
+option_num = 4
+color = Color( 0.709804, 0.341176, 0.529412, 1 )
+layer = 1
+
+[node name="buttons_news" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_back" parent="buttons_news" instance=ExtResource( 9 )]
+position = Vector2( 70, 58 )
+text = "Back"
+color = Color( 0.803922, 0.368627, 0.356863, 1 )
+inactive_y = 180
+layer = 2
+
+[node name="news" parent="buttons_news/button_back" instance=ExtResource( 26 )]
+position = Vector2( -69.9128, -75.4423 )
+
+[node name="buttons_options" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_game" parent="buttons_options" instance=ExtResource( 9 )]
+position = Vector2( -67, -45 )
+text = "Game"
+color = Color( 0.439216, 0.439216, 0.439216, 1 )
+layer = 1
+
+[node name="button_graphics" parent="buttons_options" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+text = "Graphics"
+option_num = 2
+color = Color( 0.439216, 0.439216, 0.439216, 1 )
+layer = 1
+
+[node name="button_audio" parent="buttons_options" instance=ExtResource( 9 )]
+position = Vector2( -67, -9 )
+text = "Audio"
+option_num = 3
+color = Color( 0.439216, 0.439216, 0.439216, 1 )
+layer = 1
+
+[node name="button_controls" parent="buttons_options" instance=ExtResource( 9 )]
+position = Vector2( -67, 9 )
+text = "Controls"
+option_num = 4
+color = Color( 0.439216, 0.439216, 0.439216, 1 )
+layer = 1
+
+[node name="button_credits" parent="buttons_options" instance=ExtResource( 9 )]
+position = Vector2( -67, 27 )
+text = "Credits"
+option_num = 5
+color = Color( 0.439216, 0.439216, 0.439216, 1 )
+layer = 1
+
+[node name="button_back" parent="buttons_options" instance=ExtResource( 9 )]
+position = Vector2( -67, 45 )
+text = "Back"
+option_num = 6
+color = Color( 0.439216, 0.439216, 0.439216, 1 )
+layer = 1
+
+[node name="buttons_options_game" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_cpudiff" parent="buttons_options_game" instance=ExtResource( 9 )]
+position = Vector2( -67, -45 )
+script = ExtResource( 27 )
+text = "CPU: Normal"
+color = Color( 0.309804, 0.635294, 0.65098, 1 )
+setting_slide = true
+layer = 2
+
+[node name="button_back" parent="buttons_options_game" instance=ExtResource( 9 )]
+position = Vector2( -67, 45 )
+text = "Back"
+option_num = 2
+color = Color( 0.309804, 0.635294, 0.65098, 1 )
+layer = 2
+
+[node name="buttons_options_graphics" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_screen" parent="buttons_options_graphics" instance=ExtResource( 9 )]
+position = Vector2( -67, -45 )
+script = ExtResource( 28 )
+text = "Windowed 4x"
+color = Color( 0.278431, 0.517647, 0.666667, 1 )
+setting_slide = true
+layer = 2
+
+[node name="button_vsync" parent="buttons_options_graphics" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+script = ExtResource( 29 )
+text = "Vsync: On"
+option_num = 2
+color = Color( 0.278431, 0.517647, 0.666667, 1 )
+setting_slide = true
+layer = 2
+
+[node name="button_back" parent="buttons_options_graphics" instance=ExtResource( 9 )]
+position = Vector2( -67, 45 )
+text = "Back"
+option_num = 3
+color = Color( 0.278431, 0.517647, 0.666667, 1 )
+layer = 2
+
+[node name="buttons_options_audio" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_musicvol" parent="buttons_options_audio" instance=ExtResource( 9 )]
+position = Vector2( -67, -45 )
+script = ExtResource( 30 )
+text = "Music Volume: 10"
+color = Color( 0.619608, 0.309804, 0.505882, 1 )
+setting_slide = true
+layer = 2
+
+[node name="button_sfxvol" parent="buttons_options_audio" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+script = ExtResource( 31 )
+text = "SFX Volume: 10"
+option_num = 2
+color = Color( 0.619608, 0.309804, 0.505882, 1 )
+setting_slide = true
+layer = 2
+
+[node name="button_back" parent="buttons_options_audio" instance=ExtResource( 9 )]
+position = Vector2( -67, 45 )
+text = "Back"
+option_num = 3
+color = Color( 0.619608, 0.309804, 0.505882, 1 )
+layer = 2
+
+[node name="buttons_options_controls" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_player1" parent="buttons_options_controls" instance=ExtResource( 9 )]
+position = Vector2( -67, -45 )
+text = "Player 1"
+color = Color( 0.686275, 0.376471, 0.376471, 1 )
+layer = 2
+
+[node name="button_player2" parent="buttons_options_controls" instance=ExtResource( 9 )]
+position = Vector2( -67, -27 )
+text = "Player 2"
+option_num = 2
+color = Color( 0.45098, 0.45098, 0.666667, 1 )
+layer = 2
+
+[node name="button_back" parent="buttons_options_controls" instance=ExtResource( 9 )]
+position = Vector2( -67, 45 )
+text = "Back"
+option_num = 3
+color = Color( 0.501961, 0.501961, 0.501961, 1 )
+layer = 2
+
+[node name="buttons_options_controls_p1" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_left" parent="buttons_options_controls_p1" instance=ExtResource( 9 )]
+position = Vector2( 36, -68 )
+text = "Left"
+color = Color( 0.686275, 0.376471, 0.376471, 1 )
+setting_rebind = true
+rebind_axis = true
+inactive_y = 180
+layer = 3
+
+[node name="label_left" type="Label" parent="buttons_options_controls_p1/button_left"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Left"
+align = 1
+
+[node name="button_right" parent="buttons_options_controls_p1" instance=ExtResource( 9 )]
+position = Vector2( 36, -56 )
+text = "Right"
+option_num = 2
+color = Color( 0.686275, 0.376471, 0.376471, 1 )
+setting_rebind = true
+rebind_input = "right"
+rebind_axis = true
+inactive_y = 180
+layer = 3
+
+[node name="label_right" type="Label" parent="buttons_options_controls_p1/button_right"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Right"
+align = 1
+
+[node name="button_up" parent="buttons_options_controls_p1" instance=ExtResource( 9 )]
+position = Vector2( 36, -44 )
+text = "Up"
+option_num = 3
+color = Color( 0.686275, 0.376471, 0.376471, 1 )
+setting_rebind = true
+rebind_input = "up"
+rebind_axis = true
+inactive_y = 180
+layer = 3
+
+[node name="label_up" type="Label" parent="buttons_options_controls_p1/button_up"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Up/Jump"
+align = 1
+
+[node name="button_down" parent="buttons_options_controls_p1" instance=ExtResource( 9 )]
+position = Vector2( 36, -32 )
+text = "Down"
+option_num = 4
+color = Color( 0.686275, 0.376471, 0.376471, 1 )
+setting_rebind = true
+rebind_input = "down"
+rebind_axis = true
+inactive_y = 180
+layer = 3
+
+[node name="label_down" type="Label" parent="buttons_options_controls_p1/button_down"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Down"
+align = 1
+
+[node name="button_attack" parent="buttons_options_controls_p1" instance=ExtResource( 9 )]
+position = Vector2( 36, -20 )
+text = "Attack"
+option_num = 5
+color = Color( 0.686275, 0.376471, 0.376471, 1 )
+setting_rebind = true
+rebind_input = "attack"
+inactive_y = 180
+layer = 3
+
+[node name="label_attack" type="Label" parent="buttons_options_controls_p1/button_attack"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Atk/Slct"
+align = 1
+
+[node name="button_special" parent="buttons_options_controls_p1" instance=ExtResource( 9 )]
+position = Vector2( 36, -8 )
+text = "Special"
+option_num = 6
+color = Color( 0.686275, 0.376471, 0.376471, 1 )
+setting_rebind = true
+rebind_input = "special"
+inactive_y = 180
+layer = 3
+
+[node name="label_special" type="Label" parent="buttons_options_controls_p1/button_special"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Special"
+align = 1
+
+[node name="button_super" parent="buttons_options_controls_p1" instance=ExtResource( 9 )]
+position = Vector2( 36, 4 )
+text = "Super"
+option_num = 7
+color = Color( 0.686275, 0.376471, 0.376471, 1 )
+setting_rebind = true
+rebind_input = "super"
+inactive_y = 180
+layer = 3
+
+[node name="label_super" type="Label" parent="buttons_options_controls_p1/button_super"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Super"
+align = 1
+
+[node name="button_dash" parent="buttons_options_controls_p1" instance=ExtResource( 9 )]
+position = Vector2( 36, 16 )
+text = "Dash"
+option_num = 8
+color = Color( 0.686275, 0.376471, 0.376471, 1 )
+setting_rebind = true
+rebind_input = "dash"
+inactive_y = 180
+layer = 3
+
+[node name="label_dash" type="Label" parent="buttons_options_controls_p1/button_dash"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Dash"
+align = 1
+
+[node name="button_start" parent="buttons_options_controls_p1" instance=ExtResource( 9 )]
+position = Vector2( 36, 28 )
+text = "Start"
+option_num = 9
+color = Color( 0.686275, 0.376471, 0.376471, 1 )
+setting_rebind = true
+rebind_input = "start"
+inactive_y = 180
+layer = 3
+
+[node name="label_start" type="Label" parent="buttons_options_controls_p1/button_start"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Start"
+align = 1
+
+[node name="button_dtdash" parent="buttons_options_controls_p1" instance=ExtResource( 9 )]
+position = Vector2( -51, 41 )
+script = ExtResource( 32 )
+text = "DTap Dash: On"
+option_num = 10
+color = Color( 0.686275, 0.376471, 0.376471, 1 )
+setting_slide = true
+inactive_y = 180
+layer = 3
+
+[node name="button_assuper" parent="buttons_options_controls_p1" instance=ExtResource( 9 )]
+position = Vector2( 57, 41 )
+script = ExtResource( 36 )
+text = "A+S Super: On"
+option_num = 11
+color = Color( 0.686275, 0.376471, 0.376471, 1 )
+setting_slide = true
+inactive_y = 180
+layer = 3
+
+[node name="button_default" parent="buttons_options_controls_p1" instance=ExtResource( 9 )]
+position = Vector2( 2, 54 )
+text = "Default"
+option_num = 12
+color = Color( 0.686275, 0.376471, 0.376471, 1 )
+inactive_y = 180
+layer = 3
+
+[node name="button_back" parent="buttons_options_controls_p1" instance=ExtResource( 9 )]
+position = Vector2( 2, 67 )
+text = "Back"
+option_num = 13
+color = Color( 0.686275, 0.376471, 0.376471, 1 )
+inactive_y = 180
+layer = 3
+
+[node name="buttons_options_controls_p2" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_left" parent="buttons_options_controls_p2" instance=ExtResource( 9 )]
+position = Vector2( 36, -68 )
+text = "Left"
+color = Color( 0.45098, 0.45098, 0.666667, 1 )
+setting_rebind = true
+rebind_player1 = false
+rebind_axis = true
+inactive_y = 180
+layer = 3
+
+[node name="label_left" type="Label" parent="buttons_options_controls_p2/button_left"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Left"
+align = 1
+
+[node name="button_right" parent="buttons_options_controls_p2" instance=ExtResource( 9 )]
+position = Vector2( 36, -56 )
+text = "Right"
+option_num = 2
+color = Color( 0.45098, 0.45098, 0.666667, 1 )
+setting_rebind = true
+rebind_player1 = false
+rebind_input = "right"
+rebind_axis = true
+inactive_y = 180
+layer = 3
+
+[node name="label_right" type="Label" parent="buttons_options_controls_p2/button_right"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Right"
+align = 1
+
+[node name="button_up" parent="buttons_options_controls_p2" instance=ExtResource( 9 )]
+position = Vector2( 36, -44 )
+text = "Up"
+option_num = 3
+color = Color( 0.45098, 0.45098, 0.666667, 1 )
+setting_rebind = true
+rebind_player1 = false
+rebind_input = "up"
+rebind_axis = true
+inactive_y = 180
+layer = 3
+
+[node name="label_up" type="Label" parent="buttons_options_controls_p2/button_up"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Up/Jump"
+align = 1
+
+[node name="button_down" parent="buttons_options_controls_p2" instance=ExtResource( 9 )]
+position = Vector2( 36, -32 )
+text = "Down"
+option_num = 4
+color = Color( 0.45098, 0.45098, 0.666667, 1 )
+setting_rebind = true
+rebind_player1 = false
+rebind_input = "down"
+rebind_axis = true
+inactive_y = 180
+layer = 3
+
+[node name="label_down" type="Label" parent="buttons_options_controls_p2/button_down"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Down"
+align = 1
+
+[node name="button_attack" parent="buttons_options_controls_p2" instance=ExtResource( 9 )]
+position = Vector2( 36, -20 )
+text = "Attack"
+option_num = 5
+color = Color( 0.45098, 0.45098, 0.666667, 1 )
+setting_rebind = true
+rebind_player1 = false
+rebind_input = "attack"
+inactive_y = 180
+layer = 3
+
+[node name="label_attack" type="Label" parent="buttons_options_controls_p2/button_attack"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Atk/Slct"
+align = 1
+
+[node name="button_special" parent="buttons_options_controls_p2" instance=ExtResource( 9 )]
+position = Vector2( 36, -8 )
+text = "Special"
+option_num = 6
+color = Color( 0.45098, 0.45098, 0.666667, 1 )
+setting_rebind = true
+rebind_player1 = false
+rebind_input = "special"
+inactive_y = 180
+layer = 3
+
+[node name="label_special" type="Label" parent="buttons_options_controls_p2/button_special"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Special"
+align = 1
+
+[node name="button_super" parent="buttons_options_controls_p2" instance=ExtResource( 9 )]
+position = Vector2( 36, 4 )
+text = "Super"
+option_num = 7
+color = Color( 0.45098, 0.45098, 0.666667, 1 )
+setting_rebind = true
+rebind_player1 = false
+rebind_input = "super"
+inactive_y = 180
+layer = 3
+
+[node name="label_super" type="Label" parent="buttons_options_controls_p2/button_super"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Super"
+align = 1
+
+[node name="button_dash" parent="buttons_options_controls_p2" instance=ExtResource( 9 )]
+position = Vector2( 36, 16 )
+text = "Dash"
+option_num = 8
+color = Color( 0.45098, 0.45098, 0.666667, 1 )
+setting_rebind = true
+rebind_player1 = false
+rebind_input = "dash"
+inactive_y = 180
+layer = 3
+
+[node name="label_dash" type="Label" parent="buttons_options_controls_p2/button_dash"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Dash"
+align = 1
+
+[node name="button_start" parent="buttons_options_controls_p2" instance=ExtResource( 9 )]
+position = Vector2( 36, 28 )
+text = "Start"
+option_num = 9
+color = Color( 0.45098, 0.45098, 0.666667, 1 )
+setting_rebind = true
+rebind_player1 = false
+rebind_input = "start"
+inactive_y = 180
+layer = 3
+
+[node name="label_start" type="Label" parent="buttons_options_controls_p2/button_start"]
+margin_left = -161.0
+margin_top = -7.0
+margin_right = -81.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+text = "Start"
+align = 1
+
+[node name="button_dtdash" parent="buttons_options_controls_p2" instance=ExtResource( 9 )]
+position = Vector2( -51, 41 )
+script = ExtResource( 33 )
+text = "DTap Dash: On"
+option_num = 10
+color = Color( 0.45098, 0.45098, 0.666667, 1 )
+setting_slide = true
+inactive_y = 180
+layer = 3
+
+[node name="button_assuper" parent="buttons_options_controls_p2" instance=ExtResource( 9 )]
+position = Vector2( 57, 41 )
+script = ExtResource( 35 )
+text = "A+S Super: On"
+option_num = 11
+color = Color( 0.45098, 0.45098, 0.666667, 1 )
+setting_slide = true
+inactive_y = 180
+layer = 3
+
+[node name="button_default" parent="buttons_options_controls_p2" instance=ExtResource( 9 )]
+position = Vector2( 2, 54 )
+text = "Default"
+option_num = 12
+color = Color( 0.45098, 0.45098, 0.666667, 1 )
+inactive_y = 180
+layer = 3
+
+[node name="button_back" parent="buttons_options_controls_p2" instance=ExtResource( 9 )]
+position = Vector2( 2, 67 )
+text = "Back"
+option_num = 13
+color = Color( 0.45098, 0.45098, 0.666667, 1 )
+inactive_y = 180
+layer = 3
+
+[node name="buttons_options_credits" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="button_back" parent="buttons_options_credits" instance=ExtResource( 9 )]
+position = Vector2( 74, 42 )
+text = "Back"
+color = Color( 0.25098, 0.25098, 0.25098, 1 )
+inactive_y = 180
+layer = 2
+
+[node name="label_credits_joh" type="Label" parent="buttons_options_credits/button_back"]
+margin_left = -191.0
+margin_top = -109.0
+margin_right = -11.0
+margin_bottom = -46.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0.709804, 0.972549, 0.654902, 1 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.25098 )
+custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+text = "Programming, Design, Art, 
+Music, Voice of Announcer, 
+Gotos, Vince Volt, 
+and Slime Bros.
+"
+
+[node name="label_credits_joh2" type="Label" parent="buttons_options_credits/button_back"]
+margin_left = -238.0
+margin_top = -79.0
+margin_right = -58.0
+margin_bottom = -26.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0.501961, 1, 0.501961, 1 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = -3
+text = "joh"
+align = 2
+
+[node name="label_credits_quack" type="Label" parent="buttons_options_credits/button_back"]
+margin_left = -191.0
+margin_top = -63.0
+margin_right = 10.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0.941176, 0.768627, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.25098 )
+custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+text = "Voice of Dr. Kero 
+and Don McRon,
+Alt. Color Design"
+
+[node name="label_credits_quack2" type="Label" parent="buttons_options_credits/button_back"]
+margin_left = -238.0
+margin_top = -43.0
+margin_right = -58.0
+margin_bottom = 10.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 0.632813, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = -3
+text = "quack"
+align = 2
+
+[node name="label_credits_yoyo" type="Label" parent="buttons_options_credits/button_back"]
+margin_left = -191.0
+margin_top = -27.0
+margin_right = 10.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0.764706, 0.905882, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.25098 )
+custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+text = "Voice of Yo-Yona"
+
+[node name="label_credits_yoyo2" type="Label" parent="buttons_options_credits/button_back"]
+margin_left = -238.0
+margin_top = -17.0
+margin_right = -58.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = -3
+text = "konpeitocorner"
+align = 2
+
+[node name="label_credits_scythe" type="Label" parent="buttons_options_credits/button_back"]
+margin_left = -191.0
+margin_top = -1.0
+margin_right = 10.0
+margin_bottom = 62.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 0.843137, 0.764706, 1 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.25098 )
+custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+text = "Voice of Reaper Angel"
+
+[node name="label_credits_scythe2" type="Label" parent="buttons_options_credits/button_back"]
+margin_left = -238.0
+margin_top = 9.0
+margin_right = -58.0
+margin_bottom = 62.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0.972549, 0.576471, 0.360784, 1 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.501961 )
+custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = -3
+text = "Gabrielle \"Bambi\" Phillips"
+align = 2
+
+[node name="label_credits_studio" type="Label" parent="buttons_options_credits/button_back"]
+margin_left = -104.0
+margin_top = -92.0
+margin_right = 97.0
+margin_bottom = -29.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.25098 )
+custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+text = "presented by"
+align = 1
+
+[node name="label_credits_studio2" type="Label" parent="buttons_options_credits/button_back"]
+margin_left = -104.0
+margin_top = -40.0
+margin_right = 97.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.0705882, 0.341176, 0.25098 )
+custom_constants/shadow_offset_x = -1
+custom_constants/line_spacing = -3
+custom_constants/shadow_offset_y = 1
+text = "studio joh
+(C) 2019-2020"
+align = 1
+
+[node name="logo" type="Sprite" parent="buttons_options_credits/button_back"]
+position = Vector2( -4, -60 )
+texture = ExtResource( 34 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="lobby_find_timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="match_make_timer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+[connection signal="timeout" from="lobby_find_timer" to="." method="_on_lobby_find_timer_timeout"]
+[connection signal="timeout" from="match_make_timer" to="." method="_on_match_make_timer_timeout"]

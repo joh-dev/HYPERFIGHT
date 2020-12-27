@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/special_teleport.ogg-ea3f1892478183d29a0fdef21bcedcad.oggstr"
+
+[deps]
+
+source_file="res://audio/sfx/game/char/scythe/special_teleport.ogg"
+dest_files=[ "res://.import/special_teleport.ogg-ea3f1892478183d29a0fdef21bcedcad.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

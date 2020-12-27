@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bridge.ogg-c00e7cf7b667d1c765dfe140affa9176.oggstr"
+
+[deps]
+
+source_file="res://audio/music/game/bridge.ogg"
+dest_files=[ "res://.import/bridge.ogg-c00e7cf7b667d1c765dfe140affa9176.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=9.6

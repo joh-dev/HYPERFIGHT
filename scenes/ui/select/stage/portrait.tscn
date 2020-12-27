@@ -1,0 +1,259 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://graphics/ui/select/stage/portrait.png" type="Texture" id=1]
+[ext_resource path="res://scripts/ui/select/stage/portrait.gd" type="Script" id=2]
+[ext_resource path="res://graphics/ui/select/stage/portrait/sanctuary.png" type="Texture" id=3]
+[ext_resource path="res://graphics/ui/select/stage/portrait/blackhole.png" type="Texture" id=4]
+[ext_resource path="res://graphics/ui/select/stage/portrait/bridge.png" type="Texture" id=5]
+[ext_resource path="res://graphics/ui/select/stage/portrait/company.png" type="Texture" id=6]
+[ext_resource path="res://graphics/ui/select/stage/portrait/dojo.png" type="Texture" id=7]
+[ext_resource path="res://graphics/ui/select/stage/portrait/factory.png" type="Texture" id=8]
+[ext_resource path="res://graphics/ui/select/stage/portrait/lab.png" type="Texture" id=9]
+[ext_resource path="res://graphics/ui/select/stage/portrait/locked.png" type="Texture" id=10]
+[ext_resource path="res://graphics/ui/select/stage/portrait/random.png" type="Texture" id=11]
+[ext_resource path="res://graphics/ui/select/stage/portrait/rooftop.png" type="Texture" id=12]
+[ext_resource path="res://graphics/ui/select/stage/portrait/training.png" type="Texture" id=13]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "blackhole"
+tracks/0/type = "value"
+tracks/0/path = NodePath("stage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "bridge"
+tracks/0/type = "value"
+tracks/0/path = NodePath("stage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+tracks/0/type = "value"
+tracks/0/path = NodePath("stage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath("stage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "factory"
+tracks/0/type = "value"
+tracks/0/path = NodePath("stage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+tracks/0/type = "value"
+tracks/0/path = NodePath("stage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+tracks/0/type = "value"
+tracks/0/path = NodePath("stage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 10 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+tracks/0/type = "value"
+tracks/0/path = NodePath("stage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+tracks/0/type = "value"
+tracks/0/path = NodePath("stage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "sanctuary"
+tracks/0/type = "value"
+tracks/0/path = NodePath("stage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+tracks/0/type = "value"
+tracks/0/path = NodePath("stage:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 13 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.06
+step = 0.06
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.06
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.04 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3 ]
+}
+
+[node name="sportrait" type="Sprite" groups=[
+"ui_select",
+]]
+texture = ExtResource( 1 )
+hframes = 4
+frame = 1
+script = ExtResource( 2 )
+
+[node name="stage" type="Sprite" parent="."]
+position = Vector2( -1.19209e-06, 3.57628e-07 )
+z_index = -1
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 1, 1, 62, 24 )
+
+[node name="stage_anim_player" type="AnimationPlayer" parent="."]
+anims/blackhole = SubResource( 1 )
+anims/bridge = SubResource( 2 )
+anims/company = SubResource( 3 )
+anims/dojo = SubResource( 4 )
+anims/factory = SubResource( 5 )
+anims/lab = SubResource( 6 )
+anims/locked = SubResource( 7 )
+anims/random = SubResource( 8 )
+anims/rooftop = SubResource( 9 )
+anims/sanctuary = SubResource( 10 )
+anims/training = SubResource( 11 )
+
+[node name="anim_player" type="AnimationPlayer" parent="."]
+anims/deselect = SubResource( 12 )
+anims/select = SubResource( 13 )

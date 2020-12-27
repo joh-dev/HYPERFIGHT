@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hit.ogg-976c3de0b461f4d515b0323d9b2e9f29.oggstr"
+
+[deps]
+
+source_file="res://audio/sfx/game/char/darkgoto/old/hit.ogg"
+dest_files=[ "res://.import/hit.ogg-976c3de0b461f4d515b0323d9b2e9f29.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
